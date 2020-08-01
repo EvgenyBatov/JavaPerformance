@@ -78,6 +78,18 @@ public class NegativeExpMathVsFastMathBenchmark {
     }
 
 /*
+Java 8
+Benchmark                                       (size)  Mode  Cnt      Score      Error  Units
+NegativeExpMathVsFastMathBenchmark.fastMathExp       1  avgt   15     15.086 ±    0.015  ns/op
+NegativeExpMathVsFastMathBenchmark.fastMathExp      10  avgt   15    128.072 ±    2.258  ns/op
+NegativeExpMathVsFastMathBenchmark.fastMathExp     100  avgt   15   1270.185 ±   21.779  ns/op
+NegativeExpMathVsFastMathBenchmark.fastMathExp    1000  avgt   15  21102.908 ±   35.432  ns/op
+NegativeExpMathVsFastMathBenchmark.mathExp           1  avgt   15     49.124 ±    0.043  ns/op
+NegativeExpMathVsFastMathBenchmark.mathExp          10  avgt   15    484.876 ±    0.504  ns/op
+NegativeExpMathVsFastMathBenchmark.mathExp         100  avgt   15   4846.863 ±    7.241  ns/op
+NegativeExpMathVsFastMathBenchmark.mathExp        1000  avgt   15  86830.796 ± 1129.163  ns/op
+
+Java 14
 Benchmark                                       (size)  Mode  Cnt      Score     Error  Units
 NegativeExpMathVsFastMathBenchmark.fastMathExp       1  avgt   15     13.328 ±   0.124  ns/op
 NegativeExpMathVsFastMathBenchmark.fastMathExp      10  avgt   15    123.769 ±   0.189  ns/op
