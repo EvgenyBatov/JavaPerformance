@@ -35,11 +35,11 @@ public class NegativeExpMathVsFastMathBenchmark {
      */
     @Param({"1", "10", "100", "1000"})
     int size;
-    int[] arguments;
+    double[] arguments;
 
     @Setup
     public void setup() {
-        arguments = new int[size];
+        arguments = new double[size];
         for (int i = 0; i < size; i++) {
             arguments[i] = -i;
         }
@@ -47,14 +47,14 @@ public class NegativeExpMathVsFastMathBenchmark {
 
     @Benchmark
     public void mathExp(Blackhole bh) {
-        for (int x : arguments) {
+        for (double x : arguments) {
             bh.consume(Math.exp(x));
         }
     }
 
     @Benchmark
     public void fastMathExp(Blackhole bh) {
-        for (int x : arguments) {
+        for (double x : arguments) {
             bh.consume(FastMath.exp(x));
         }
     }
@@ -78,15 +78,15 @@ public class NegativeExpMathVsFastMathBenchmark {
     }
 
 /*
-Benchmark                                       (size)  Mode  Cnt      Score    Error  Units
-NegativeExpMathVsFastMathBenchmark.fastMathExp       1  avgt   15     22.207 ±  0.029  ns/op
-NegativeExpMathVsFastMathBenchmark.fastMathExp      10  avgt   15    229.834 ±  0.185  ns/op
-NegativeExpMathVsFastMathBenchmark.fastMathExp     100  avgt   15   2302.799 ±  2.338  ns/op
-NegativeExpMathVsFastMathBenchmark.fastMathExp    1000  avgt   15  28592.116 ± 56.409  ns/op
-NegativeExpMathVsFastMathBenchmark.mathExp           1  avgt   15      7.242 ±  0.355  ns/op
-NegativeExpMathVsFastMathBenchmark.mathExp          10  avgt   15    164.290 ±  0.184  ns/op
-NegativeExpMathVsFastMathBenchmark.mathExp         100  avgt   15   1783.939 ±  2.396  ns/op
-NegativeExpMathVsFastMathBenchmark.mathExp        1000  avgt   15  23468.590 ± 22.150  ns/op
+Benchmark                                       (size)  Mode  Cnt      Score     Error  Units
+NegativeExpMathVsFastMathBenchmark.fastMathExp       1  avgt   15     13.328 ±   0.124  ns/op
+NegativeExpMathVsFastMathBenchmark.fastMathExp      10  avgt   15    123.769 ±   0.189  ns/op
+NegativeExpMathVsFastMathBenchmark.fastMathExp     100  avgt   15   1253.024 ±  19.199  ns/op
+NegativeExpMathVsFastMathBenchmark.fastMathExp    1000  avgt   15  21264.737 ±  42.074  ns/op
+NegativeExpMathVsFastMathBenchmark.mathExp           1  avgt   15      7.080 ±   0.303  ns/op
+NegativeExpMathVsFastMathBenchmark.mathExp          10  avgt   15     95.867 ±   3.158  ns/op
+NegativeExpMathVsFastMathBenchmark.mathExp         100  avgt   15    988.940 ±  12.531  ns/op
+NegativeExpMathVsFastMathBenchmark.mathExp        1000  avgt   15  15229.322 ± 131.025  ns/op
 */
 
 }
