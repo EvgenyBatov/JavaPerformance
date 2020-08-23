@@ -11,8 +11,7 @@ public class Client {
         System.out.println("Starting client");
         SerializationHelper serializationUtils = new SerializationHelper();
         Random random = new Random();
-        int responseSizeBytes = 8;
-        byte[] buffer = new byte[responseSizeBytes];
+        byte[] buffer = new byte[Response.BYTES];
         try (Socket socket = new Socket("localhost", 7777);
              InputStream inputStream = socket.getInputStream();
              OutputStream outputStream = socket.getOutputStream()) {
@@ -25,7 +24,7 @@ public class Client {
                 request.setA(a);
                 request.setB(b);
                 outputStream.write(serializationUtils.serialize(request));
-                if (inputStream.read(buffer) != responseSizeBytes) {
+                if (inputStream.read(buffer) != Response.BYTES) {
                     throw new RuntimeException("Invalid response");
                 }
                 Response response = serializationUtils.responseDeserialize(buffer);

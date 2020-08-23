@@ -13,8 +13,7 @@ public class Server {
     public static void main(String[] args) {
         System.out.println("Starting server");
         int port = 7777;
-        int requestSizeBytes = 8;
-        byte[] buffer = new byte[requestSizeBytes];
+        byte[] buffer = new byte[Request.BYTES];
         SerializationHelper serializationUtils = new SerializationHelper();
         Response response = new Response();
         try (ServerSocket serverSocket = new ServerSocket(port);
@@ -23,7 +22,7 @@ public class Server {
              OutputStream outputStream = socket.getOutputStream()) {
             long memoryUsed = MemoryUtils.memoryUsed();
             while (true) {
-                if (inputStream.read(buffer) != requestSizeBytes) {
+                if (inputStream.read(buffer) != Request.BYTES) {
                     throw new RuntimeException("Invalid request");
                 }
                 Request request = serializationUtils.requestDeserialize(buffer);

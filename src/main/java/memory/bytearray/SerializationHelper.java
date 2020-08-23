@@ -14,8 +14,8 @@ public class SerializationHelper {
         this.byteArrayReader = new ByteArrayReader();
         this.request = new Request();
         this.response = new Response();
-        this.requestByteBuffer = ByteBuffer.allocate(8);
-        this.responseByteBuffer = ByteBuffer.allocate(8);
+        this.requestByteBuffer = ByteBuffer.allocate(Request.BYTES);
+        this.responseByteBuffer = ByteBuffer.allocate(Response.BYTES);
     }
 
     public byte[] serialize(Request request) {

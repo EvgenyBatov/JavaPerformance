@@ -2,6 +2,8 @@ package memory.bytearray;
 
 public class Request {
 
+    public static final int BYTES = 8;
+
     public int a;
     public int b;
 
