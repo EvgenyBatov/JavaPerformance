@@ -9,9 +9,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-
+    //java -cp benchmarks.jar -XX:+UnlockExperimentalVMOptions -XX:+UseEpsilonGC -verbose:gc -Xms2m -Xmx2m memory.bytearray.Server
     public static void main(String[] args) {
         System.out.println("Starting server");
+        boolean killOnMemoryAllocation = true;
         int port = 7777;
         byte[] buffer = new byte[Request.BYTES];
         SerializationHelper serializationUtils = new SerializationHelper();
@@ -29,7 +30,7 @@ public class Server {
                 long result = (long) request.getA() * (long) request.getB();
                 response.setResult(result);
                 outputStream.write(serializationUtils.serialize(response));
-                if (MemoryUtils.memoryUsed() > memoryUsed + 1000000) {
+                if (killOnMemoryAllocation && MemoryUtils.memoryUsed() > memoryUsed + 100000) {
                     throw new RuntimeException("memory allocation happened");
                 }
             }
